@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>VetGranada - Veterinaria</title>
+	<meta name="description" content="VetGranada - Veterinaria en Granada. Atención a domicilio, servicio 24 horas y cirugías especializadas." />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+	<style>
+		:root{
+			--brand:#336699; /* azul más suave */
+			--accent:#ff8a4c; /* naranja cálido */
+			--muted:#6b7280;
+			--bg:#f6fbff;
+			--card:#ffffff;
+			--header-height:72px;
+			font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+		}
+
+		*{box-sizing:border-box}
+	body{margin:0;color:#0a2335;background:var(--bg);min-height:100vh;-webkit-font-smoothing:antialiased;}
+		/* Skip link for keyboard users */
+		.skip-link{position:absolute;left:8px;top:8px;background:#fff;color:var(--brand);padding:.35rem .6rem;border-radius:6px;z-index:120;transform:translateY(-120%);transition:transform .18s ease}
+		.skip-link:focus{transform:translateY(0);outline:3px solid rgba(51,102,153,.18)}
+		html{scroll-behavior:smooth}
+
+		/* Fondo general sutil (usa la imagen en assets) */
+	.site-bg{position:fixed;inset:0;z-index:-1;background-image:url('assets/images.jpg');background-size:cover;background-position:center;opacity:.15;pointer-events:none;filter:grayscale(.02) brightness(.92)}
+
+		header{height:var(--header-height);display:flex;align-items:center;background:rgba(255,255,255,.9);backdrop-filter:blur(6px);box-shadow:0 6px 30px rgba(30,41,59,.06);position:sticky;top:0;z-index:60}
+		.container{max-width:1100px;margin:0 auto;padding:0 1rem}
+		.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+		.brand{display:flex;align-items:center;gap:.75rem}
+		.logo{width:46px;height:46px;border-radius:8px;display:inline-block}
+
+		nav ul{list-style:none;margin:0;padding:0;display:flex;gap:1rem;align-items:center}
+		nav a{color:var(--brand);text-decoration:none;font-weight:600;padding:.35rem .5rem;border-radius:6px}
+		nav a:hover{background:rgba(51,102,153,.06)}
+
+		.mobile-toggle{display:none;background:transparent;border:0;font-size:1.35rem;padding:.25rem;color:var(--muted);cursor:pointer;transition:transform .18s ease}
+		.mobile-toggle:active{transform:scale(.96)}
+
+		.cta{background:linear-gradient(90deg,var(--brand),#4a7fc9);color:white;padding:.6rem .95rem;border-radius:10px;text-decoration:none;font-weight:700;box-shadow:0 8px 20px rgba(51,102,153,.12)}
+		.cta:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(51,102,153,.14)}
+		.cta:focus{outline:3px solid rgba(74,127,201,.18);border-radius:8px}
+
+		/* HERO */
+		.hero{padding:4rem 0;background-image:linear-gradient(rgba(3,6,23,0.45), rgba(3,6,23,0.35)), url('assets/descarga.jpg');background-size:cover;background-position:center;border-radius:12px;margin:1.25rem 0;color:#fff;box-shadow:0 18px 50px rgba(3,6,23,.18)}
+		.hero-inner{display:grid;grid-template-columns:1fr 320px;gap:1.25rem;align-items:start}
+	.hero h1{margin:0 0 .5rem;font-size:2.25rem;line-height:1.05;color:#fff;text-shadow:0 10px 30px rgba(3,6,23,.45)}
+	.hero p{color:rgba(255,255,255,.95);margin-bottom:.9rem}
+
+		/* Cards */
+		.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin:1rem 0}
+	.card{background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(245,249,255,0.92));padding:1.1rem;border-radius:12px;box-shadow:0 10px 30px rgba(16,24,40,.06);transition:transform .28s ease,box-shadow .28s ease;border:1px solid rgba(11,20,32,.04)}
+		.card{will-change:transform,opacity}
+		.card::before{content:'';display:block;height:6px;width:64px;background:linear-gradient(90deg,var(--brand),var(--accent));border-radius:6px;margin-bottom:.6rem;opacity:.92}
+	/* Contacto rápido: texto ligeramente más oscuro para contraste en hero */
+	.card.contacto-rapido{color:#061824}
+	.card.contacto-rapido p{color:#061824;margin:.25rem 0}
+	.card.contacto-rapido p strong{font-weight:700;color:#061824}
+		.card.contacto-rapido .telefono a{color:#061824;font-size:1.02rem}
+		.card.contacto-rapido .email a.email-link{color:#0a5a8a}
+		.card:hover{transform:translateY(-6px);box-shadow:0 18px 45px rgba(16,24,40,.08)}
+		.card h3{margin-top:.5rem;margin-bottom:.5rem}
+		.card a{color:var(--brand);text-decoration:none}
+		.card a:hover{text-decoration:underline}
+		/* Social / footer links */
+		.footer-grid a{color:rgba(255,255,255,.95);text-decoration:none}
+		.footer-grid a:hover{text-decoration:underline;color:#dff1ff}
+		/* Focus visible for accessibility */
+		:focus-visible{outline:3px solid rgba(51,102,153,.16);outline-offset:3px}
+
+		/* FAQ & forms */
+	.faq details{margin-bottom:.75rem;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));padding:.9rem;border-radius:10px}
+		form input,form textarea{width:100%;padding:.7rem;border:1px solid #e6eef8;border-radius:8px;margin-top:.5rem}
+
+		/* Footer */
+		footer{background:#081226;color:#dbe9ff;padding:2.25rem 0;margin-top:2.5rem}
+		footer small{display:block;margin-top:.5rem;color:rgba(255,255,255,.6)}
+		.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+		.footer-grid h4{color:#fff;margin-bottom:.5rem}
+		.footer-grid p,a{color:rgba(255,255,255,.85)}
+
+		/* Responsive */
+		@media (max-width:900px){
+			.hero-inner{grid-template-columns:1fr}
+			.cards{grid-template-columns:repeat(2,1fr)}
+			.footer-grid{grid-template-columns:1fr}
+			nav ul{display:none;flex-direction:column;position:absolute;right:1rem;top:68px;background:rgba(255,255,255,0.98);padding:1rem;border-radius:8px;box-shadow:0 8px 24px rgba(11,20,32,.08)}
+			nav ul.show{display:flex}
+			.mobile-toggle{display:inline-block}
+		}
+		@media (max-width:600px){
+			.cards{grid-template-columns:1fr}
+		}
+	</style>
+</head>
+<body>
+	<a class="skip-link" href="#inicio">Saltar al contenido</a>
+	<header>
+			<div class="container nav">
+				<button class="mobile-toggle" aria-controls="main-menu" aria-expanded="false">☰</button>
+			<div class="brand">
+				<svg class="logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo VetGranada">
+					<rect width="64" height="64" rx="12" fill="var(--brand)"/>
+					<path d="M32 10c6 0 11 5 11 11 0 6-5 11-11 11s-11-5-11-11c0-6 5-11 11-11z" fill="#fff"/>
+				</svg>
+				<div>
+					<div style="font-weight:800">VetGranada</div>
+					<div style="font-size:.8rem;color:var(--muted);margin-top:2px">Veterinaria - Granada</div>
+				</div>
+			</div>
+
+					<nav>
+						<ul id="main-menu">
+					<li><a href="#inicio">Inicio</a></li>
+					<li><a href="#quienes">Quiénes</a></li>
+					<li><a href="#servicios">Servicios</a></li>
+					<li><a href="#faq">FAQ</a></li>
+					<li><a href="#contacto">Contacto</a></li>
+				</ul>
+			</nav>
+
+			<div>
+				<a class="cta" href="#contacto">Contacta!</a>
+			</div>
+		</div>
+	</header>
+
+	<main class="container">
+			<div class="site-bg" aria-hidden="true"></div>
+		<section id="inicio" class="hero">
+			<div class="hero-inner">
+				<div>
+					<h1>Cuida a tu mascota con cariño y profesionalidad</h1>
+					<p>En VetGranada ofrecemos atención veterinaria a domicilio, servicio de urgencias 24 horas y cirugías con las máximas garantías. Un equipo cercano y experimentado para cuidar la salud de tu compañero.</p>
+					<p><a class="cta" href="#contacto">Solicitar visita</a></p>
+				</div>
+			<aside class="card contacto-rapido">
+					<h3 style="margin-top:0">Contacto rápido</h3>
+					<p class="telefono">Tel (urgencias): <strong><a href="tel:+34600000000">+34 600 000 000</a></strong></p>
+					<p class="email">Email: <a class="email-link" href="mailto:info@vetgranada.example.com">info@vetgranada.example.com</a></p>
+					  <!-- Imagen eliminada por petición, se mantiene fondo global -->
+				</aside>
+			</div>
+		</section>
+
+		<section id="quienes">
+			<h2>Quiénes somos</h2>
+			<div class="card small">
+				<p>VetGranada es una clínica veterinaria local con más de 10 años de experiencia en el cuidado de mascotas. Nuestro equipo está formado por veterinarios titulados y personal con experiencia en urgencias, cirugía y cuidados preventivos.</p>
+			</div>
+		</section>
+
+		<section id="servicios">
+			<h2>Servicios</h2>
+			<div class="cards">
+								<article class="card">
+									<!-- Imagen eliminada por petición, se mantiene fondo global -->
+					<h3>Veterinaria a domicilio</h3>
+					<p class="small">Atendemos consultas, vacunas y revisiones en tu domicilio para evitar el estrés de tu mascota.</p>
+				</article>
+
+				<article class="card">
+					<img src="assets/service-24h.svg" alt="Servicio 24 horas" />
+					<h3>Servicio 24 horas</h3>
+					<p class="small">Equipo de guardia para urgencias fuera del horario habitual.</p>
+				</article>
+
+				<article class="card">
+					<img src="assets/service-surgery.svg" alt="Cirugías" />
+					<h3>Cirugías y especialidades</h3>
+					<p class="small">Cirugías programadas y procedimientos con anestesia controlada. Especializados en geriatría y dermatología.</p>
+				</article>
+			</div>
+		</section>
+
+		<section id="faq">
+			<h2>Preguntas frecuentes</h2>
+			<div class="faq">
+				<details>
+					<summary>¿Cómo solicito una visita a domicilio?</summary>
+					<div class="small">Llámanos o usa el formulario de contacto. También puedes escribirnos a <a href="mailto:info@vetgranada.example.com">info@vetgranada.example.com</a>.</div>
+				</details>
+				<details>
+					<summary>¿Cuánto cubre la zona de servicio?</summary>
+					<div class="small">Cubrimos Granada y localidades cercanas; para zonas más alejadas consultad disponibilidad.</div>
+				</details>
+			</div>
+		</section>
+
+		<section id="contacto">
+			<h2>Contacto</h2>
+			<div class="cards">
+				<div class="card">
+					<h3>Información</h3>
+					<p class="small">Dirección: C/ Ejemplo 12, Granada</p>
+					<p class="small">Tel: +34 600 000 000</p>
+				</div>
+				<div class="card">
+					<h3>Escríbenos</h3>
+					<form action="mailto:info@vetgranada.example.com" method="post" enctype="text/plain">
+						<label>Nombre<input type="text" name="nombre" required /></label>
+						<label>Email<input type="email" name="email" required /></label>
+						<label>Mensaje<textarea name="mensaje" rows="4" required></textarea></label>
+						<p><button class="cta" type="submit">Enviar</button></p>
+					</form>
+				</div>
+				<div class="card">
+					<h3>Redes</h3>
+					<p class="small"><a class="social" href="#">Facebook</a> <a class="social" href="#">Instagram</a></p>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="container footer-grid">
+			<div>
+				<h4>Sobre VetGranada</h4>
+				<p class="small">VetGranada S.L.<br/>C/ Ejemplo 12, 18001 Granada<br/>NIF: B00000000</p>
+			</div>
+			<div>
+				<h4>Redes sociales</h4>
+				<p class="small"><a class="social" href="#">Facebook</a><br/><a class="social" href="#">Instagram</a></p>
+			</div>
+			<div>
+				<h4>Legislación</h4>
+				<p class="small"><a href="#">Aviso legal</a><br/><a href="#">Política de privacidad</a></p>
+			</div>
+		</div>
+		<div style="text-align:center;color:rgba(255,255,255,.7);margin-top:1rem">© 2025 VetGranada</div>
+	</footer>
+		<script>
+			const mobileToggleBtn = document.querySelector('.mobile-toggle');
+			const mainMenu = document.getElementById('main-menu');
+			if(mobileToggleBtn && mainMenu){
+				mobileToggleBtn.addEventListener('click', ()=>{
+					const isOpen = mainMenu.classList.toggle('show');
+					mobileToggleBtn.setAttribute('aria-expanded', String(isOpen));
+				});
+			}
+		</script>
+</body>
+</html>
+
