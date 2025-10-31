@@ -107,7 +107,7 @@ header nav ul li a:hover { color: var(--text-light); background-color: var(--pri
 /* --- NUEVO: Banner CTA --- */
 .cta-banner {
     background-color: var(--dark-green);
-    color: white;
+    color: black;
     padding: 40px 0;
 }
 .cta-banner h3 {
